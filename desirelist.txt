@@ -1,0 +1,42 @@
+# Backend
+
+## Start the backend
+source ../../environments/desirelist.dev.environment.sh
+yarn build && yarn start
+
+---------------------------------------------
+
+# Frontend
+
+## Start the frontend
+yarn start
+
+---------------------------------------------
+
+# Database
+
+## migrations 
+yarn db:up
+
+---------------------------------------------
+
+# Postgres
+
+## Start/Stop
+sudo service postgresql start 
+sudo service postgresql stop 
+
+## Create local SQL dump:
+pg_dump <db_name> > sql_dump.backup
+
+## Restore from local SQL dump:
+dropdb <db_name> && createdb <db_name> && psql <db_name> < sql_dump.backup
+
+## Restore from custom-format SQL dump (e.g. from pgAdmin):
+dropdb <db_name> && createdb <db_name> && pg_restore -d <db_name> -1 custom_format_sql_dump.backup
+
+## Find processes
+ps -ef | grep postgres
+
+## Location of hba config file
+SHOW hba_file;
